@@ -14,6 +14,8 @@ $.get("https://script.google.com/macros/s/AKfycbzbG1z_38Y5Wdj3ZgiSKHRlmbzDhiM1Rb
 		$("td.postlistFieldTran>img", row).each(function(i,img){
 			if(img.src.indexOf("/uploads/memberPost/" >= 0))
 				img = img ? ("http://www.msnladyboy.com" + img.src.replace(window.location.origin,"")) : "???";
+				if(img.indexOf("msnladyboy") >= 0)
+					img.replace("msnladyboy","");
 				tmp += '<img src="' + img + '"/> || \n';
 		});
 
