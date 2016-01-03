@@ -2,19 +2,45 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script>
-	$.get("https://script.google.com/macros/s/AKfycbzbG1z_38Y5Wdj3ZgiSKHRlmbzDhiM1RbDs5URuqOvS1qC1rex8/exec?url=http://www.msnladyboy.com", null, function(data) {
-		var el = $('<div></div>');
-		el.html(data);
-		$('div.social-icon', el).each(function(i,element){
-			var row = element.parentElement.parentElement;
-			img	= $("td.postlistFieldTran>img").src;
-				document.body.innerHTML	+= '<div>' + img + '</div>\n';
-			$("img",element).each(function(i,element){
-				document.body.innerHTML	+= '<div>' + element.src + " : " + element.onclick + '</div>\n';
-			});
-			document.body.innerHTML	+= '<br>\n';
+$.get("https://script.google.com/macros/s/AKfycbzbG1z_38Y5Wdj3ZgiSKHRlmbzDhiM1RbDs5URuqOvS1qC1rex8/exec?url=http://www.msnladyboy.com", null, function(data) {
+	var el = $('<div></div>');
+	el.html(data);
+	var tmp	= "";
+	$('div.social-icon', el).each(function(i, element) {
+		var row = element.parentElement.parentElement;
+		img = $("td.postlistFieldTran>img", row);
+
+		tmp += '<div>' + (img && img.length > 0 ? img[0].src.replace("http://fiddle.jshell.net", "") : "???") + '</div>\n';
+		$("img", element).each(function(i, element) {
+			var link	= element.onclick ? element.onclick.toString(4) : "";
+			var icon	= element.src.replace("http://fiddle.jshell.net", "");
+			switch(icon.replace("/images/social-icon/",""))
+			{
+				case "icon-line.gif":
+					link	= "//line.me/ti/p/~" + typeof(link.indexOf);
+					break;
+				case "icon-instagram.gif":
+					link	= "//www.instagram.com/" + link;
+					break;
+				case "show-fb.gif":
+					link	= element.parentElement.href;
+					break;
+				case "show-hi5.gif":
+					link	= element.parentElement.href;
+					break;
+				case "msn.png":
+					link	= "mailto:" + link;
+					break;
+			}
+			
+			icon	= '<img src="http://www.msnladyboy.com' + icon + '" />';
+			tmp += '<a target="_blank" href="' + link + '">' + icon + '</a>''\n';
 		});
+		tmp	+= '<br>\n';
 	});
+	
+	document.body.innerHTML += tmp;
+});
 </script>
 
 </head>
