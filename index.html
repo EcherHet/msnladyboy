@@ -13,7 +13,8 @@ $.get("https://script.google.com/macros/s/AKfycbzbG1z_38Y5Wdj3ZgiSKHRlmbzDhiM1Rb
 		tmp += '<div>';
 		$("td.postlistFieldTran>img", row).each(function(i,img){
 			if(img.src.indexOf("/uploads/memberPost/" >= 0))
-				tmp += '<img src="' + img ? img.src.replace(window.location.origin, "http://www.msnladyboy.com") : "???" + '"/> || \n';
+				img = img ? ("http://www.msnladyboy.com" + img.src.replace(window.location.origin,"")) : "???";
+				tmp += '<img src="' + img + '"/> || \n';
 		});
 
 		$("img", element).each(function(i, element) {
@@ -35,7 +36,7 @@ $.get("https://script.google.com/macros/s/AKfycbzbG1z_38Y5Wdj3ZgiSKHRlmbzDhiM1Rb
 					break;
 				case "msn.png":
 					link	= "mailto:" + link.slice(link.lastIndexOf("('" + 2));
-					link	= slice(0,link.indexOf("')"));
+					link	= link.slice(0,link.indexOf("')"));
 					break;
 			}
 			
