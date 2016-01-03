@@ -17,19 +17,17 @@ $.get("https://script.google.com/macros/s/AKfycbzbG1z_38Y5Wdj3ZgiSKHRlmbzDhiM1Rb
 			switch(icon.replace("/images/social-icon/",""))
 			{
 				case "icon-line.gif":
-					link	= "//line.me/ti/p/~" + typeof(link.indexOf);
+					link	= "//line.me/ti/p/~" + link.slice(link.lastIndexOf(" : ")).replace(" : ","").slice(link.lastIndexOf("')"));
 					break;
 				case "icon-instagram.gif":
-					link	= "//www.instagram.com/" + link;
+					link	= "//www.instagram.com/" + link.slice(link.lastIndexOf(" : ")).replace(" : ","").slice(link.lastIndexOf("')"));
 					break;
 				case "show-fb.gif":
-					link	= element.parentElement.href;
-					break;
 				case "show-hi5.gif":
-					link	= element.parentElement.href;
+					link	= "//" + element.parentElement.href.replace("redirectlink.php?l=");
 					break;
 				case "msn.png":
-					link	= "mailto:" + link;
+					link	= "mailto:" + link.slice(link.lastIndexOf("('")).slice(link.lastIndexOf("')"));
 					break;
 			}
 			
