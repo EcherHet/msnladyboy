@@ -24,7 +24,7 @@ function reload()
 			
 			tmp += '<tr><td style="text-align: right;">';
 			$("td>img", row).each(function(i,img){
-				if(img && img.src.indexOf("/uploads/memberPost/" >= 0))
+				if(img && img.src.indexOf("/uploads/memberPost/" >= 0)) {
 					var td	= img.parentElement;
 				
 					img	= "http://www.msnladyboy.com" + img.src.slice(img.src.indexOf("/uploads/memberPost/"));
@@ -34,7 +34,7 @@ function reload()
 					tmp += td.nextElementSibling.innerText;
 					tmp += '</td><td>';
 					tmp += td.nextElementSibling.nextElementSibling.innerText;
-	
+				}
 			});
 			
 			tmp += '</td><td>';
@@ -68,7 +68,6 @@ function reload()
 			tmp	+= '</td></tr>\n';
 		});
 		
-		tmp	+= "</table>";
 		document.getElementById("tbody").innerHTML = tmp;
 	});
 }
