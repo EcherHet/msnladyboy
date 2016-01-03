@@ -71,8 +71,8 @@ function reload()
 			tmptr	+= '</td></tr>\n';
 			tmp	+= tmptr;
 
-			div.html(tmptr);
-			row.appendTo(document.getElementById("tbody"));
+			$(div).html(tmptr);
+			$(row).appendTo($(document.getElementById("tbody")));
 		});
 		
 		document.getElementById("tbody").innerHTML = tmp;
