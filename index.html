@@ -10,13 +10,13 @@ $.get("https://script.google.com/macros/s/AKfycbzbG1z_38Y5Wdj3ZgiSKHRlmbzDhiM1Rb
 	$('div.social-icon', el).each(function(i, element) {
 		var row = element.parentElement.parentElement;
 		
-		tmp += '<tr><td>';
+		tmp += '<tr><td style="text-align: right;">';
 		$("td>img", row).each(function(i,img){
 			if(img && img.src.indexOf("/uploads/memberPost/" >= 0))
 				var td	= img.parentElement;
 			
 				img	= "http://www.msnladyboy.com" + img.src.slice(img.src.indexOf("/uploads/memberPost/"));
-				tmp += '<img style="max-height: 160px;" src="' + img + '"/>';
+				tmp += '<img style="max-height: 160px; max-width: 200px;" src="' + img + '"/>';
 				
 				tmp += '</td><td>';
 				tmp += td.nextElementSibling.innerText;
