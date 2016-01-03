@@ -13,7 +13,7 @@ $.get("https://script.google.com/macros/s/AKfycbzbG1z_38Y5Wdj3ZgiSKHRlmbzDhiM1Rb
 		tmp += '<div>';
 		$("td.postlistFieldTran>img", row).each(function(i,img){
 			if(img.src.indexOf("/uploads/memberPost/" >= 0))
-				tmp += '<img src="' + img ? img[0].src.replace(window.location.origin, "http://www.msnladyboy.com") : "???") + '"/> || \n';
+				tmp += '<img src="' + img ? img[0].src.replace(window.location.origin, "http://www.msnladyboy.com") : "???" + '"/> || \n';
 		});
 
 		$("img", element).each(function(i, element) {
