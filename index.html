@@ -19,27 +19,26 @@ function reload()
 		var el = $('<div></div>');
 		el.html(data);
 		var tmp	= "<table>";
-		$('div.social-icon', el).each(function(i, element) {
-			var row = element.parentElement.parentElement;
+		$('div.social-icon', el).each(function(i, div) {
+			var row = div.parentElement.parentElement;
 			
+			var tmptr	= '<tr><td style="text-align: right;">';
 			tmp += '<tr><td style="text-align: right;">';
 			$("td>img", row).each(function(i,img){
 				if(img && img.src.indexOf("/uploads/memberPost/" >= 0)) {
 					var td	= img.parentElement;
 				
 					img	= "http://www.msnladyboy.com" + img.src.slice(img.src.indexOf("/uploads/memberPost/"));
-					tmp += '<img style="max-height: 160px; max-width: 200px;" src="' + img + '"/>';
+					tmptr += '<img style="max-height: 160px; max-width: 200px;" src="' + img + '"/>';
 					
-					tmp += '</td><td>';
-					tmp += td.nextElementSibling.innerText;
-					tmp += '</td><td>';
-					tmp += td.nextElementSibling.nextElementSibling.innerText;
+					tmptr += '</td><td>' + td.nextElementSibling.innerText;
+					tmptr += '</td><td>' + td.nextElementSibling.nextElementSibling.innerText;
 				}
 			});
 			
-			tmp += '</td><td>';
+			tmptr += '</td><td>';
 	
-			$("img", element).each(function(i, element) {
+			$("img", div).each(function(i, element) {
 				var link	= element.onclick ? element.onclick.toString(4) : "";
 				var icon	= element.src.replace(window.location.origin, "");
 				switch(icon.replace("/images/social-icon/",""))
@@ -63,9 +62,15 @@ function reload()
 				}
 				
 				icon	= '<img src="http://www.msnladyboy.com' + icon + '" />';
-				tmp += '<a target="_blank" href="' + link + '">' + icon + '</a>\n';
+				tmptr += '<a target="_blank" href="' + link + '">' + icon + '</a>\n';
+
 			});
-			tmp	+= '</td></tr>\n';
+
+			tmptr	+= '</td></tr>\n';
+			tmp	+= tmptr;
+
+			div.html(tmptr);
+			row.appendTo(document.getElementById("tbody"));
 		});
 		
 		document.getElementById("tbody").innerHTML = tmp;
