@@ -2,66 +2,94 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script>
-var msnladyboy	= "http://www.msnladyboy.com" + window.location.search;
-$.get("https://script.google.com/macros/s/AKfycbzbG1z_38Y5Wdj3ZgiSKHRlmbzDhiM1RbDs5URuqOvS1qC1rex8/exec?url=" + msnladyboy, null, function(data) {
-	var el = $('<div></div>');
-	el.html(data);
-	var tmp	= "<table>";
-	$('div.social-icon', el).each(function(i, element) {
-		var row = element.parentElement.parentElement;
-		
-		tmp += '<tr><td style="text-align: right;">';
-		$("td>img", row).each(function(i,img){
-			if(img && img.src.indexOf("/uploads/memberPost/" >= 0))
-				var td	= img.parentElement;
-			
-				img	= "http://www.msnladyboy.com" + img.src.slice(img.src.indexOf("/uploads/memberPost/"));
-				tmp += '<img style="max-height: 160px; max-width: 200px;" src="' + img + '"/>';
-				
-				tmp += '</td><td>';
-				tmp += td.nextElementSibling.innerText;
-				tmp += '</td><td>';
-				tmp += td.nextElementSibling.nextElementSibling.innerText;
-
-		});
-		
-		tmp += '</td><td>';
-
-		$("img", element).each(function(i, element) {
-			var link	= element.onclick ? element.onclick.toString(4) : "";
-			var icon	= element.src.replace(window.location.origin, "");
-			switch(icon.replace("/images/social-icon/",""))
-			{
-				case "icon-line.gif":
-					link	= "//line.me/ti/p/~" + link.slice(link.lastIndexOf(" : ")).replace(" : ","");
-					link	= link.slice(0,link.indexOf("')"));
-					break;
-				case "icon-instagram.gif":
-					link	= "//www.instagram.com/" + link.slice(link.lastIndexOf(" : ")).replace(" : ","");
-					link	= link.slice(0,link.indexOf("')"));
-					break;
-				case "show-fb.gif":
-				case "show-hi5.gif":
-					link	= "//" + element.parentElement.href.slice(element.parentElement.href.lastIndexOf("php?l=")).replace("php?l=","");
-					break;
-				case "msn.png":
-					link	= "mailto:" + link.slice(link.lastIndexOf("('" + 2));
-					link	= link.slice(0,link.indexOf("')"));
-					break;
-			}
-			
-			icon	= '<img src="http://www.msnladyboy.com' + icon + '" />';
-			tmp += '<a target="_blank" href="' + link + '">' + icon + '</a>\n';
-		});
-		tmp	+= '</td></tr>\n';
-	});
+function reload()
+{
+	var param	= {
+		sGender = $("#sGender").value,
+		sToAge = $("#sFromAge").value,
+		sToAge = $("#sToAge").value,
+		sKeyword = $("#sToAge").value
+	};
 	
-	tmp	+= "</table>";
-	document.body.innerHTML += tmp;
-});
+	history.pushState({}, "","?" + $.param(param));
+	var msnladyboy	= "http://www.msnladyboy.com?" + $.param(param);
+	$.get("https://script.google.com/macros/s/AKfycbzbG1z_38Y5Wdj3ZgiSKHRlmbzDhiM1RbDs5URuqOvS1qC1rex8/exec?url=" + msnladyboy, null, function(data) {
+		var el = $('<div></div>');
+		el.html(data);
+		var tmp	= "<table>";
+		$('div.social-icon', el).each(function(i, element) {
+			var row = element.parentElement.parentElement;
+			
+			tmp += '<tr><td style="text-align: right;">';
+			$("td>img", row).each(function(i,img){
+				if(img && img.src.indexOf("/uploads/memberPost/" >= 0))
+					var td	= img.parentElement;
+				
+					img	= "http://www.msnladyboy.com" + img.src.slice(img.src.indexOf("/uploads/memberPost/"));
+					tmp += '<img style="max-height: 160px; max-width: 200px;" src="' + img + '"/>';
+					
+					tmp += '</td><td>';
+					tmp += td.nextElementSibling.innerText;
+					tmp += '</td><td>';
+					tmp += td.nextElementSibling.nextElementSibling.innerText;
+	
+			});
+			
+			tmp += '</td><td>';
+	
+			$("img", element).each(function(i, element) {
+				var link	= element.onclick ? element.onclick.toString(4) : "";
+				var icon	= element.src.replace(window.location.origin, "");
+				switch(icon.replace("/images/social-icon/",""))
+				{
+					case "icon-line.gif":
+						link	= "//line.me/ti/p/~" + link.slice(link.lastIndexOf(" : ")).replace(" : ","");
+						link	= link.slice(0,link.indexOf("')"));
+						break;
+					case "icon-instagram.gif":
+						link	= "//www.instagram.com/" + link.slice(link.lastIndexOf(" : ")).replace(" : ","");
+						link	= link.slice(0,link.indexOf("')"));
+						break;
+					case "show-fb.gif":
+					case "show-hi5.gif":
+						link	= "//" + element.parentElement.href.slice(element.parentElement.href.lastIndexOf("php?l=")).replace("php?l=","");
+						break;
+					case "msn.png":
+						link	= "mailto:" + link.slice(link.lastIndexOf("('" + 2));
+						link	= link.slice(0,link.indexOf("')"));
+						break;
+				}
+				
+				icon	= '<img src="http://www.msnladyboy.com' + icon + '" />';
+				tmp += '<a target="_blank" href="' + link + '">' + icon + '</a>\n';
+			});
+			tmp	+= '</td></tr>\n';
+		});
+		
+		tmp	+= "</table>";
+		document.getElementById("tbody").innerHTML = tmp;
+	});
+}
+
+reload();
+
 </script>
 
 </head>
 <body>
+	<div>
+		<select name="sGender" id="sGender" onchange="reload()">
+			<option value="">เพศ</option>
+			<option value="0">กระเทย</option>
+		  <option value="1">ผู้ชาย</option>
+		  <option value="2">ทอม</option>
+		  <option value="3">ไม่ระบุ</option>
+		</select>
+		<input type="Number" id="sFromAge" min="15" max="60" onchange="reload()" />
+		<input type="Number" id="sToAge" min="15" max="60" onchange="reload()" />
+	</div>
+	<table>
+		<tbody id="tbody"></thead>
+	</table>
 </body>
 </html>
