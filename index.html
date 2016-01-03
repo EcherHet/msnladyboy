@@ -5,17 +5,17 @@
 function reload()
 {
 	var param	= {};
-	if($("#sGender").value)
-		param.sGender	= $("#sGender").value;
+	if($("#sGender")[0].value)
+		param.sGender	= $("#sGender")[0].value;
 		
-	if($("#sFromAge").value)
-		param.sFromAge	= $("#sFromAge").value;
+	if($("#sFromAge")[0].value)
+		param.sFromAge	= $("#sFromAge")[0].value;
 		
-	if($("#sToAge").value)
-		param.sToAge	= $("#sToAge").value;
+	if($("#sToAge")[0].value)
+		param.sToAge	= $("#sToAge")[0].value;
 		
-	if($("#sKeyword").value)
-		param.sKeyword	= $("#sKeyword").value;
+	if($("#sKeyword")[0].value)
+		param.sKeyword	= $("#sKeyword")[0].value;
 	
 	history.pushState({}, "","?" + $.param(param));
 	var msnladyboy	= "http://www.msnladyboy.com?" + $.param(param);
@@ -77,7 +77,16 @@ function reload()
 	});
 }
 
-reload();
+window.onload	= function(){
+	var keys	= ["sGender","sFromAge","sToAge","sKeyword"];
+	location.search.substr(1).split("&").forEach(function(item) {
+		var pair = item.split("=");
+		if(keys.indexOf(pair[0]) >= 0 && pair[1])
+			$("#" + pair[0])[0].value = pair[1];
+	});
+	
+	reload();
+};
 
 </script>
 
