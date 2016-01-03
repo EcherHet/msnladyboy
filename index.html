@@ -70,9 +70,6 @@ function reload()
 			tmptr += '</td><td>' + div.parentElement.nextElementSibling.nextElementSibling.innerText;
 			tmptr	+= '</td></tr>\n';
 			tmp	+= tmptr;
-
-			$(div).html(tmptr);
-			$(row).appendTo($(document.getElementById("tbody")));
 		});
 		
 		document.getElementById("tbody").innerHTML = tmp;
