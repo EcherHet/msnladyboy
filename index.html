@@ -19,9 +19,9 @@ $.get("https://script.google.com/macros/s/AKfycbzbG1z_38Y5Wdj3ZgiSKHRlmbzDhiM1Rb
 				tmp += '<img style="max-height: 160px;" src="' + img + '"/>';
 				
 				tmp += '</td><td>';
-				tmp += td.nextSibling.innerText;
+				tmp += td.nextElementSibling.innerText;
 				tmp += '</td><td>';
-				tmp += td.nextSibling.nextSibling.innerText;
+				tmp += td.nextElementSibling.nextElementSibling.innerText;
 
 		});
 		
