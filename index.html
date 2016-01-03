@@ -2,15 +2,19 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script>
-$.get("https://script.google.com/macros/s/AKfycbzbG1z_38Y5Wdj3ZgiSKHRlmbzDhiM1RbDs5URuqOvS1qC1rex8/exec?url=http://www.msnladyboy.com", null, function(data) {
-  var el = $('<div></div>');
-  el.html(data);
-  $('div.social-icon', el).each(function(i,element){
-	  $("img",element).each(function(i,element){
-		  	document.body.innerHTML	+= '<div>' + element.onclick + '</div>';
- 		 });
-  });
-});
+	$.get("https://script.google.com/macros/s/AKfycbzbG1z_38Y5Wdj3ZgiSKHRlmbzDhiM1RbDs5URuqOvS1qC1rex8/exec?url=http://www.msnladyboy.com", null, function(data) {
+		var el = $('<div></div>');
+		el.html(data);
+		$('div.social-icon', el).each(function(i,element){
+			var row = element.parentElement.parentElement;
+			img	= $("td.postlistFieldTran>img").src;
+				document.body.innerHTML	+= '<div>' + img + '</div>\n';
+			$("img",element).each(function(i,element){
+				document.body.innerHTML	+= '<div>' + element.src + " : " + element.onclick + '</div>\n';
+			});
+			document.body.innerHTML	+= '<br>\n';
+		});
+	});
 </script>
 
 </head>
