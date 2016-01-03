@@ -6,16 +6,26 @@ var msnladyboy	= "http://www.msnladyboy.com" + window.location.search;
 $.get("https://script.google.com/macros/s/AKfycbzbG1z_38Y5Wdj3ZgiSKHRlmbzDhiM1RbDs5URuqOvS1qC1rex8/exec?url=" + msnladyboy, null, function(data) {
 	var el = $('<div></div>');
 	el.html(data);
-	var tmp	= "";
+	var tmp	= "<table>";
 	$('div.social-icon', el).each(function(i, element) {
 		var row = element.parentElement.parentElement;
 		
-		tmp += '<div>';
-		$("td.postlistFieldTran>img", row).each(function(i,img){
+		tmp += '<tr><td>';
+		$("td>img", row).each(function(i,img){
 			if(img && img.src.indexOf("/uploads/memberPost/" >= 0))
+				var td	= img.parentElement;
+			
 				img	= "http://www.msnladyboy.com" + img.src.slice(img.src.indexOf("/uploads/memberPost/"));
-				tmp += '<img src="' + img + '"/> || \n';
+				tmp += '<img style="max-height: 160px;" src="' + img + '"/>';
+				
+				tmp += '</td><td>';
+				tmp += td.nextSibling.innerText;
+				tmp += '</td><td>';
+				tmp += td.nextSibling.nextSibling.innerText;
+
 		});
+		
+		tmp += '</td><td>';
 
 		$("img", element).each(function(i, element) {
 			var link	= element.onclick ? element.onclick.toString(4) : "";
@@ -43,9 +53,10 @@ $.get("https://script.google.com/macros/s/AKfycbzbG1z_38Y5Wdj3ZgiSKHRlmbzDhiM1Rb
 			icon	= '<img src="http://www.msnladyboy.com' + icon + '" />';
 			tmp += '<a target="_blank" href="' + link + '">' + icon + '</a>\n';
 		});
-		tmp	+= '</div><br>\n';
+		tmp	+= '</td></tr><br>\n';
 	});
 	
+	tmp	+= "</table>";
 	document.body.innerHTML += tmp;
 });
 </script>
