@@ -14,7 +14,7 @@ function reload()
 	});
 	
 	history.pushState({}, "","?" + $.param(param));
-	var msnladyboy	= "http://www.msnladyboy.com?" + $.param(param);
+	var msnladyboy	= "http://www.msnladyboy.com?" + encodeURIComponent($.param(param));
 	$.get("https://script.google.com/macros/s/AKfycbzbG1z_38Y5Wdj3ZgiSKHRlmbzDhiM1RbDs5URuqOvS1qC1rex8/exec?url=" + msnladyboy, null, function(data) {
 		var el = $('<div></div>');
 		el.html(data);
