@@ -26,7 +26,7 @@ $.get("https://script.google.com/macros/s/AKfycbzbG1z_38Y5Wdj3ZgiSKHRlmbzDhiM1Rb
 					break;
 				case "show-fb.gif":
 				case "show-hi5.gif":
-					link	= "//" + element.parentElement.href.replace("redirectLink.php?l=");
+					link	= "//" + element.parentElement.href.slice(element.parentElement.href.lastIndexOf("php?l="));
 					break;
 				case "msn.png":
 					link	= "mailto:" + link.slice(link.lastIndexOf("('")).slice(0,link.indexOf("')"));
