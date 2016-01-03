@@ -13,7 +13,7 @@ $.get("https://script.google.com/macros/s/AKfycbzbG1z_38Y5Wdj3ZgiSKHRlmbzDhiM1Rb
 		tmp += '<div>';
 		$("td.postlistFieldTran>img", row).each(function(i,img){
 			if(img && img.src.indexOf("/uploads/memberPost/" >= 0))
-				img	= img.src.slice(img.src.indexOf("/uploads/memberPost/"));
+				img	= "http://www.msnladyboy.com" + img.src.slice(img.src.indexOf("/uploads/memberPost/"));
 				tmp += '<img src="' + img + '"/> || \n';
 		});
 
