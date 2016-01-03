@@ -13,7 +13,7 @@ $.get("https://script.google.com/macros/s/AKfycbzbG1z_38Y5Wdj3ZgiSKHRlmbzDhiM1Rb
 		tmp += '<div>' + (img && img.length > 0 ? img[0].src.replace(window.location.origin, "") : "???") + '</div>\n';
 		$("img", element).each(function(i, element) {
 			var link	= element.onclick ? element.onclick.toString(4) : "";
-			var icon	= element.src.replace("http://fiddle.jshell.net", "");
+			var icon	= element.src.replace(window.location.origin, "");
 			switch(icon.replace("/images/social-icon/",""))
 			{
 				case "icon-line.gif":
