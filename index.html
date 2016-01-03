@@ -4,12 +4,18 @@
 <script>
 function reload()
 {
-	var param	= {
-		sGender: $("#sGender").value,
-		sToAge: $("#sFromAge").value,
-		sToAge: $("#sToAge").value,
-		sKeyword: $("#sKeyword").value
-	};
+	var param	= {};
+	if($("#sGender").value)
+		param.sGender	= $("#sGender").value;
+		
+	if($("#sFromAge").value)
+		param.sFromAge	= $("#sFromAge").value;
+		
+	if($("#sToAge").value)
+		param.sToAge	= $("#sToAge").value;
+		
+	if($("#sKeyword").value)
+		param.sKeyword	= $("#sKeyword").value;
 	
 	history.pushState({}, "","?" + $.param(param));
 	var msnladyboy	= "http://www.msnladyboy.com?" + $.param(param);
