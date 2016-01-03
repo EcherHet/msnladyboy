@@ -4,6 +4,8 @@
 <script>
 function reload()
 {
+	document.getElementById("tbody").innerHTML = "";
+	
 	var param	= {};
 	if($("#sGender")[0].value)
 		param.sGender	= $("#sGender")[0].value;
