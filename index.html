@@ -5,10 +5,10 @@
 function reload()
 {
 	var param	= {
-		sGender = $("#sGender").value,
-		sToAge = $("#sFromAge").value,
-		sToAge = $("#sToAge").value,
-		sKeyword = $("#sToAge").value
+		sGender: $("#sGender").value,
+		sToAge: $("#sFromAge").value,
+		sToAge: $("#sToAge").value,
+		sKeyword: $("#sKeyword").value
 	};
 	
 	history.pushState({}, "","?" + $.param(param));
@@ -77,7 +77,7 @@ reload();
 
 </head>
 <body>
-	<div>
+	<form onSubmit="reload()">
 		<select name="sGender" id="sGender" onchange="reload()">
 			<option value="">เพศ</option>
 			<option value="0">กระเทย</option>
@@ -85,9 +85,11 @@ reload();
 		  <option value="2">ทอม</option>
 		  <option value="3">ไม่ระบุ</option>
 		</select>
-		<input type="Number" id="sFromAge" min="15" max="60" onchange="reload()" />
-		<input type="Number" id="sToAge" min="15" max="60" onchange="reload()" />
-	</div>
+		<input type="number" id="sFromAge" min="15" max="60" onchange="reload()" />
+		<input type="number" id="sToAge" min="15" max="60" onchange="reload()" />
+		<input type="text" id="sKeyword" onchange="reload()" />
+		<input type="submit" />
+	</form>
 	<table>
 		<tbody id="tbody"></thead>
 	</table>
