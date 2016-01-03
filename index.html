@@ -79,7 +79,7 @@ reload();
 
 </head>
 <body>
-	<form onSubmit="reload()">
+	<form onSubmit="reload(); return false;">
 		<select name="sGender" id="sGender" onchange="reload()">
 			<option value="">เพศ</option>
 			<option value="0">กระเทย</option>
