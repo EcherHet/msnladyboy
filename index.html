@@ -69,8 +69,6 @@ function reload()
 		tmp	+= "</table>";
 		document.getElementById("tbody").innerHTML = tmp;
 	});
-	
-	return false;
 }
 
 reload();
@@ -79,7 +77,7 @@ reload();
 
 </head>
 <body>
-	<form onSubmit="reload(); return false;">
+	<form onSubmit="reload(); return false;" method="GET">
 		<select name="sGender" id="sGender" onchange="reload()">
 			<option value="">เพศ</option>
 			<option value="0">กระเทย</option>
