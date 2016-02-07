@@ -14,7 +14,7 @@ function reload()
 	});
 	
 	history.pushState({}, "","?" + $.param(param));
-	var msnladyboy	= "http://www.msnladyboy.com?" + encodeURIComponent($.param(param));
+	var msnladyboy	= "http://www.msngig.com?" + encodeURIComponent($.param(param));
 	$.get("https://script.google.com/macros/s/AKfycbzbG1z_38Y5Wdj3ZgiSKHRlmbzDhiM1RbDs5URuqOvS1qC1rex8/exec?url=" + msnladyboy, null, function(data) {
 		var el = $('<div></div>');
 		el.html(data);
@@ -98,10 +98,9 @@ td {
 	<form onSubmit="reload(); return false;" method="GET">
 		<select name="sGender" id="sGender" onchange="reload()">
 			<option value="">เพศ</option>
-			<option value="0">กระเทย</option>
-		  <option value="1">ผู้ชาย</option>
-		  <option value="2">ทอม</option>
-		  <option value="3">ไม่ระบุ</option>
+		  <option value="0">ผู้ชาย</option>
+		  <option value="1">ผู้หญิง</option>
+		  <option value="2">ไม่ระบุ</option>
 		</select>
 		<input type="number" id="sFromAge" min="15" max="60" onchange="reload()" />
 		<input type="number" id="sToAge" min="15" max="60" onchange="reload()" />
