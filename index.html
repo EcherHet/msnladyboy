@@ -2,7 +2,7 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script>
-var keys	= ["sGender","sFromAge","sToAge","sKeyword"];
+var keys	= ["sGender","sFromAge","sToAge","sProvince","sKeyword"];
 function reload()
 {
 	document.getElementById("tbody").innerHTML = "";
@@ -14,10 +14,11 @@ function reload()
 	});
 	
 	history.pushState({}, "","?" + $.param(param));
-	var msnladyboy	= "http://www.msngig.com?" + encodeURIComponent($.param(param));
-	$.get("https://script.google.com/macros/s/AKfycbzbG1z_38Y5Wdj3ZgiSKHRlmbzDhiM1RbDs5URuqOvS1qC1rex8/exec?url=" + msnladyboy, null, function(data) {
+	var baseUrl	= "http://www.msngig.com?" + encodeURIComponent($.param(param));
+	$.get("https://script.google.com/macros/s/AKfycbzbG1z_38Y5Wdj3ZgiSKHRlmbzDhiM1RbDs5URuqOvS1qC1rex8/exec?url=" + baseUrl, null, function(data) {
 		var el = $('<div></div>');
 		el.html(data);
+		$('#sProvince', el).each(function(i, div) {
 		var tmp	= "<table>";
 		$('div.social-icon', el).each(function(i, div) {
 			var row = div.parentElement.parentElement;
@@ -28,7 +29,7 @@ function reload()
 				if(img && img.src.indexOf("/uploads/memberPost/" >= 0)) {
 					var td	= img.parentElement;
 				
-					img	= "http://www.msnladyboy.com" + img.src.slice(img.src.indexOf("/uploads/memberPost/"));
+					img	= "http://www.msngig.com" + img.src.slice(img.src.indexOf("/uploads/memberPost/"));
 					tmptr += '<img style="max-height: 160px; max-width: 200px;" src="' + img + '"/>';
 					
 					tmptr += '</td><td>' + td.nextElementSibling.innerText;
@@ -61,7 +62,7 @@ function reload()
 						break;
 				}
 				
-				icon	= '<img src="http://www.msnladyboy.com' + icon + '" />';
+				icon	= '<img src="http://www.msngig.com' + icon + '" />';
 				tmptr += '<a target="_blank" href="' + link + '">' + icon + '</a>\n';
 
 			});
@@ -95,7 +96,7 @@ td {
 </style>
 </head>
 <body>
-	<form onSubmit="reload(); return false;" method="GET">
+	<form id="form" onSubmit="reload(); return false;" method="GET">
 		<select name="sGender" id="sGender" onchange="reload()">
 			<option value="">เพศ</option>
 		  <option value="0">ผู้ชาย</option>
@@ -104,6 +105,85 @@ td {
 		</select>
 		<input type="number" id="sFromAge" min="15" max="60" onchange="reload()" />
 		<input type="number" id="sToAge" min="15" max="60" onchange="reload()" />
+		<select name="sProvince" id="sProvince" onchange="reload()">
+        <option value="">จังหวัด</option>
+                <option value="0" selected="">กรุงเทพฯ</option>
+                <option value="1">กระบี่</option>
+                <option value="2">กาญจนบุรี</option>
+                <option value="3">กาฬสินธุ์</option>
+                <option value="4">กำแพงเพชร</option>
+                <option value="5">ขอนแก่น</option>
+                <option value="6">จันทบุรี</option>
+                <option value="7">ฉะเชิงเทรา</option>
+                <option value="8">ชลบุรี</option>
+                <option value="9">ชัยนาท</option>
+                <option value="10">ชัยภูมิ</option>
+                <option value="11">ชุมพร</option>
+                <option value="12">ตรัง</option>
+                <option value="13">ตราด</option>
+                <option value="14">ตาก</option>
+                <option value="15">นครนายก</option>
+                <option value="16">นครปฐม</option>
+                <option value="17">นครพนม</option>
+                <option value="18">นครราชสีมา</option>
+                <option value="19">นครศรีธรรมราช</option>
+                <option value="20">นครสวรรค์</option>
+                <option value="21">นนทบุรี</option>
+                <option value="22">นราธิวาส</option>
+                <option value="23">น่าน</option>
+                <option value="24">บุรีรัมย์</option>
+                <option value="25">ปทุมธานี</option>
+                <option value="26">ประจวบคีรีขันธ์</option>
+                <option value="27">ปราจีนบุรี</option>
+                <option value="28">ปัตตานี</option>
+                <option value="29">พระนครศรีอยุธยา</option>
+                <option value="30">พะเยา</option>
+                <option value="31">พังงา</option>
+                <option value="32">พัทลุง</option>
+                <option value="33">พิจิตร</option>
+                <option value="34">พิษณุโลก</option>
+                <option value="35">ภูเก็ต</option>
+                <option value="36">มหาสารคาม</option>
+                <option value="37">มุกดาหาร</option>
+                <option value="38">ยะลา</option>
+                <option value="39">ยโสธร</option>
+                <option value="40">ระนอง</option>
+                <option value="41">ระยอง</option>
+                <option value="42">ราชบุรี</option>
+                <option value="43">ร้อยเอ็ด</option>
+                <option value="44">ลพบุรี</option>
+                <option value="45">ลำปาง</option>
+                <option value="46">ลำพูน</option>
+                <option value="47">ศรีสะเกษ</option>
+                <option value="48">สกลนคร</option>
+                <option value="49">สงขลา</option>
+                <option value="50">สตูล</option>
+                <option value="51">สมุทรปราการ</option>
+                <option value="52">สมุทรสงคราม</option>
+                <option value="53">สมุทรสาคร</option>
+                <option value="54">สระบุรี</option>
+                <option value="55">สระแก้ว</option>
+                <option value="56">สิงห์บุรี</option>
+                <option value="57">สุพรรณบุรี</option>
+                <option value="58">สุราษฎร์ธานี</option>
+                <option value="59">สุรินทร์</option>
+                <option value="60">สุโขทัย</option>
+                <option value="61">หนองคาย</option>
+                <option value="62">หนองบัวลำภู</option>
+                <option value="63">อำนาจเจริญ</option>
+                <option value="64">อุดรธานี</option>
+                <option value="65">อุตรดิตถ์</option>
+                <option value="66">อุทัยธานี</option>
+                <option value="67">อุบลราชธานี</option>
+                <option value="68">อ่างทอง</option>
+                <option value="69">เชียงราย</option>
+                <option value="70">เชียงใหม่</option>
+                <option value="71">เพชรบุรี</option>
+                <option value="72">เพชรบูรณ์</option>
+                <option value="73">เลย</option>
+                <option value="74">แพร่</option>
+                <option value="75">แม่ฮ่องสอน</option>
+              </select>
 		<input type="text" id="sKeyword" onchange="reload()" />
 		<input type="submit" />
 	</form>
