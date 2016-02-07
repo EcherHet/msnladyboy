@@ -25,6 +25,8 @@
 
                     var tmptr = '<tr><td style="text-align: right;">';
                     tmp += '<tr><td style="text-align: right;">';
+                    tmptr += '</td>" + div.parentElement.prevElementSibling.innerText + "<td>';
+                    
                     $("td>img", row).each(function(i, img) {
                         if (img && img.src.indexOf("/uploads/memberPost/" >= 0)) {
                             var td = img.parentElement;
