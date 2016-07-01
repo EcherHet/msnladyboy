@@ -41,7 +41,6 @@
 
                     tmptr += '</td><td>';
 
-$("img", div).width(128);
                     $("img", div).each(function(i, element) {
                         var link = element.onclick ? element.onclick.toString(4) : "";
                         var icon = element.src.replace(window.location.origin, "");
@@ -64,7 +63,7 @@ $("img", div).width(128);
                                 break;
                         }
 
-                        icon = '<img src="http://www.msnladyboy.com' + icon + '" />';
+                        icon = '<img style='width:80px' src="http://www.msnladyboy.com' + icon + '" />';
                         tmptr += '<a target="_blank" href="' + link + '">' + icon + '</a>\n';
 
                     });
