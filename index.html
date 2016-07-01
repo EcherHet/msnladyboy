@@ -41,7 +41,7 @@
 
                     tmptr += '</td><td>';
 
-$("img", div).css("width","64px");
+$("img", div).width(64);
                     $("img", div).each(function(i, element) {
                         var link = element.onclick ? element.onclick.toString(4) : "";
                         var icon = element.src.replace(window.location.origin, "");
